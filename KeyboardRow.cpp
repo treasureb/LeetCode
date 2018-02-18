@@ -12,7 +12,7 @@ class KeyboardRow
         str[0] = "qwertyuiop";
         str[1] = "asdfghjkl";
         str[2] = "zxcvbnm";
-        for(int i = 0; i < 3;++i)
+        for(int i = 0; i < 3;++i)//初始化
         {
             for(int j = 0;j < str[i].size();++j)
             {

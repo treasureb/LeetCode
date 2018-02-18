@@ -35,11 +35,11 @@ bool paren(const std::string &str)
 int main()
 {
 	std::string strBuf = "()[]{}";
-	std::cout << "The string is:" << strBuf << " ";
-	if (paren(strBuf))
-		std::cout << "À¨ºÅÆ¥Åä";
-	else
-		std::cout << "À¨ºÅ²»Æ¥Åä";
-	std::cout << std::endl;
-	return 0;
+	std::cout << "The string is:" << strBuf <<std::endl;
+//    if (paren(strBuf))
+//		std::cout << "À¨ºÅÆ¥Åä";
+//	else
+//		std::cout << "À¨ºÅ²»Æ¥Åä";
+//	std::cout << std::endl;
+    return 0;
 }
