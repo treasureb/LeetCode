@@ -6,10 +6,11 @@
 #include<queue>
 using namespace std;
 
-struct BinaryTreeNode{
+typedef struct BinaryTreeNode{
     BinaryTreeNode* _left;
     BinaryTreeNode* _right;
+    BinaryTreeNode* _parent;
     int _value;
-};
+}Node;
 
 #endif
