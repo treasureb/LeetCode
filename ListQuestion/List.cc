@@ -368,6 +368,73 @@ Node* ReverseList(Node *Head)
     return ReverseHead;
 }
 
+Node* MergeListR(Node* Head1,Node* Head2)
+{
+    if(nullptr == Head1 || nullptr == Head2){
+        if(nullptr == Head1)
+            return Head2;
+
+        return Head1;
+    }
+
+    Node* newHead = nullptr;
+    if(Head1->_data < Head2->_data){
+        newHead = Head1;
+        newHead->_next = MergeList(newHead->_next,Head2);
+    }else{
+        newHead = Head2;
+        newHead->_next = MergeList(Head1,newHead->_next);
+    }
+
+    return newHead;
+}
+
+Node* MergeList(Node* Head1,Node* Head2)
+{
+    if(nullptr == Head1 || nullptr == Head2){
+        if(Head1 == nullptr)
+            return Head2;
+        return Head1;
+    }
+
+    Node* newHead = nullptr;
+    Node* node1 = nullptr;
+    Node* node2 = nullptr;
+    if(Head1->_data < Head2->_data){
+        newHead = Head1;
+        node1 = Head1->_next;
+        node2 = Head2;
+    }else{
+        newHead = Head2;
+        node2 = Head2->_next;
+        node1 = Head1->_next;
+    }
+
+    //保存头结点
+    Node* cur = newHead;
+    while(node1 != nullptr && node2 != nullptr){
+        if(node1->_data <= node2->_data){
+            cur->_next = node1;
+            cur = node1;
+            node1 = node1->_next;
+        }else{
+            cur->_next = node2;
+            cur = node2;
+            node2 = node2->_next;
+        }
+    }
+
+    //若Head1不为空
+    if(node1 != nullptr){
+        cur->_next = node1;
+    }
+
+    if(node2 != nullptr){
+        cur->_next = node2;
+    }
+
+    return newHead;
+}
 
 void TestCross()
 {

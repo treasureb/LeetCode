@@ -14,8 +14,24 @@ using namespace std;
 
 typedef struct Node
 {
+    Node(TYPE data)
+     :_next(nullptr)
+      ,_data(data)
+    {}
 	Node* _next;
 	TYPE _data;
 }Node;
+
+void Print(Node* Head)
+{
+    if(nullptr == Head)
+        return;
+    Node* cur = Head;
+    while(cur){
+        cout<<cur->_data<<"->";
+        cur = cur->_next;
+    }
+    cout<<endl;
+}
 
 #endif
