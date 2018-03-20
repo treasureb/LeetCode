@@ -3,6 +3,13 @@
 
 #include"Tree.h"
 
+/*
+ *  1. 为什么不用stack，而使用vector？
+ *
+ *  因为打印路径时，需要得到路径上的所有值，
+ *  而stack只能得到栈顶，故不是最好的选择
+ */
+
 void FindPath(Node* Head,int expectedSum,vector<int>& path,int currentSum)
 {
     currentSum += Head->_value;
