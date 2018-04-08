@@ -4,6 +4,7 @@ using namespace std;
 class Solution{
 public:
     //因为采用了递归，所以时间复杂度会高
+    //一次跳一阶或者两阶
     int jumpFloor(int num)
     {
         if(num == 0)
@@ -35,6 +36,19 @@ public:
             }
             return b;
         }
+    }
+
+    //一次跳1，2.....n
+    int jumpFloor3(int number)
+    {
+        if(number < 0)
+            return -1;
+        else if(number == 1)
+            return 1;
+        else if(number == 2)
+            return 2;
+        else
+            return 2*jumpFloor3(number-1);
     }
 };
 
