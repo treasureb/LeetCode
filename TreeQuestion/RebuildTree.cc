@@ -29,7 +29,7 @@ public:
            }else if(i > p){
                in_right.push_back(in[i]);
                pre_right.push_back(pre[i]);
-           }
+              }
        }
 
        node->_left = reconstruct_binarytree(pre_left,in_left);
