@@ -19,7 +19,7 @@ bool Equal(double num1,double num2)
 }
 
 //递归判断左子树和右子树
-bool DoesTree1HaveTree2(BinaryTreeNode* Root1,BinaryTreeNode* Root2)
+bool DoesTree1HaveTree2(Node* Root1,Node* Root2)
 {
     if(Root2 == nullptr)
         return true;
@@ -34,7 +34,7 @@ bool DoesTree1HaveTree2(BinaryTreeNode* Root1,BinaryTreeNode* Root2)
 }
 
 // 查找与根节点一样的节点
-bool HasSubTree(BinaryTreeNode* Root1,BinaryTreeNode* Root2)
+bool HasSubTree(Node* Root1,Node* Root2)
 {
     bool result = false;
 
@@ -50,3 +50,36 @@ bool HasSubTree(BinaryTreeNode* Root1,BinaryTreeNode* Root2)
     return result;
 }
 
+
+/*
+ *  采用牛客网大佬的方式实现
+ *
+ */
+
+class Solution
+{
+    bool is_sub_tree(Node* root1,Node* root2)
+    {
+        if(root2 == nullptr)
+            return true;
+        if(root1 == nullptr)
+            return false;
+
+        if(root1->_value == root2->_value){
+            return is_sub_tree(root1->_left,root2->_left) && 
+            is_sub_tree(root1->_right,root2->_right);
+        }else{
+            return false;
+        }
+    }
+public:
+    bool HasSubTree(Node* root1,Node* root2)
+    {
+        if(nullptr == root1 || nullptr == root2)
+            return false;
+
+        return is_sub_tree(root1,root2)||
+            HasSubTree(root1->_left,root2) || 
+            HasSubTree(root2->_right,root2);
+    }
+};
