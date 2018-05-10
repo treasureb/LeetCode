@@ -8,6 +8,12 @@ typedef struct Node
     Node* _next;
     Node* _slibling;
     int _data;
+
+    Node(int data)
+    :_next(nullptr)
+     ,_slibling(nullptr)
+     ,_data(data)
+    {}
 }Node;
 
 //首先复制链表的每个节点
@@ -72,7 +78,45 @@ Node* Clone(Node* Head)
     return ReConnectNode(Head);
 }
 
-int main()
-{
-    return 0;
-}
+class Solution{
+public:
+    /*
+     * 1.复制每个节点,然后链接在当前节点的垢面
+     * 2.遍历链表,给新创建的节点链接随机节点
+     * 3.将两个链表拆分
+     */
+    Node* Clone(Node* pHead){
+        if(pHead == nullptr)
+            return nullptr;
+
+        Node* cur = pHead;
+        //1.复制节点
+        while(cur){
+            Node* node = new Node(cur->_data);
+            node->_next = cur->_next;
+            cur->_next = node;
+            cur = node->_next;
+        }
+
+        cur = pHead;
+        //2.给新节点赋随机链表指针
+        while(cur){
+            Node* node = cur->_next;
+            if(cur->_slibling){
+                node->_slibling = cur->_slibling->_next;
+            }
+            cur = node->_next;
+        }
+
+        //3.拆分两个链表
+        Node* pCloneHead = pHead->_next;
+        Node* tmp;
+        cur = pHead;
+        while(cur->_next){
+            tmp = cur->_next;
+            cur->_next = tmp->_next;
+            cur = tmp;
+        }
+        return pCloneHead;
+    }
+};
