@@ -48,3 +48,30 @@ void FindPath(Node* Head,int expectedSum)
     int currentSum = 0;
     FindPath(Head,expectedSum,path,currentSum);
 }
+
+
+class Solution{
+    void dfs(Node* root,int sum,vector<vector<int>>& ret,vector<int>& tmp){
+        tmp.push_back(root->_value);
+        if(!root->_left && !root->_right){
+            if(sum == root->_value){
+                ret.push_back(tmp);
+            }
+        }
+        if(root->_left)
+            dfs(root->_left,sum-root->_value,ret,tmp);
+        if(root->_right)
+           dfs(root->_right,sum-root->_value,ret,tmp);
+
+        tmp.pop_back();
+    }
+public:
+    vector<vector<int>> FindPath(Node* root,int expectedSum){
+        vector<vector<int>> ret;
+        vector<int> tmp;
+        if(root){
+            dfs(root,expectedSum,ret,tmp);
+        }
+        return ret;
+    }
+};
