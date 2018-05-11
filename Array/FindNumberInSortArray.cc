@@ -1,4 +1,6 @@
 #include<iostream>
+#include<vector>
+using namespace std;
 
 /*
  *  采用二分求出该数，但是两边还有可能是
@@ -63,4 +65,55 @@ int GetNumberOfK(int* Data,int length,int k)
     }
 
     return number;
+}
+
+class Solution{
+public:
+    int GetNumberOfK(vector<int> data,int k){
+        int lower = get_lower(data,k);
+        int upper = get_upper(data,k);
+
+        return upper - lower + 1;
+    }
+
+    int get_lower(vector<int> data,int k){
+        int start = 0;
+        int end = data.size()-1;
+        int mid = (start+end)/2;
+
+        while(start <= end){
+            if(data[mid] < k){
+                start = mid+1;
+            }else{
+                end = mid-1;
+            }
+            mid = (start+end)/2;
+        }
+        return start;
+    }
+
+    int get_upper(vector<int> data,int k){
+        int start = 0;
+        int end = data.size()-1;
+        int mid = (start+end)/2;
+
+        while(start <= end){
+            if(data[mid] <= k){
+                start = mid+1;
+            }else{
+                end = mid-1;
+            }
+            mid = (start+end)/2;
+        }
+        return end;
+    }
+};
+
+int main()
+{
+    Solution s;
+    vector<int> v = {1,2,3,4,4,4};
+    int ret = s.GetNumberOfK(v,4);
+    cout<<ret<<endl;
+    return 0;
 }
