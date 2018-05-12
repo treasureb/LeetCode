@@ -2,6 +2,7 @@
 #include<iostream>
 #include<stack>
 
+//判断单链表是否为回文
 using namespace std;
 
 class Solution{
