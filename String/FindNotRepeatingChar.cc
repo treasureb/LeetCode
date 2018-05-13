@@ -34,6 +34,7 @@ char FindNotRepeatingChar(const char* String)
     return '\0';
 }
 
+//第一个只出现一次的字符位置
 class Solution{
 public:
     int first_not_repeating_char(string str){
