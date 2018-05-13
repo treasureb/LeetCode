@@ -1,4 +1,7 @@
 #include<iostream>
+#include<map>
+#include<string>
+
 using namespace std;
 
 char FindNotRepeatingChar(const char* String)
@@ -30,6 +33,21 @@ char FindNotRepeatingChar(const char* String)
 
     return '\0';
 }
+
+class Solution{
+public:
+    int first_not_repeating_char(string str){
+        map<char,int> mp;
+        for(int i = 0;i < (int)str.size();++i){
+            mp[str[i++]]++;
+        }
+        for(int i = 0;i < (int)str.size();++i){
+            if(mp[str[i]] == 1)
+                return i;
+        }
+        return -1;
+    }     
+};
 
 
 int main()
