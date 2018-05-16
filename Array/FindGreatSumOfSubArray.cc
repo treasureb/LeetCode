@@ -1,4 +1,7 @@
 #include<iostream>
+#include<vector>
+
+using namespace std;
 
 int FindGreatSumOfSubArray(int* Data,int length)
 {
@@ -22,3 +25,21 @@ int FindGreatSumOfSubArray(int* Data,int length)
 
     return GreatestSum;
 }
+
+class Solution{
+    int FindGreatSumOfSubArray(vector<int> array){
+        if(array.empty())
+            return 0;
+
+        int sum = array[0];
+        int tmpsum = array[0];
+        for(int i = 1;i < (int)array.size();++i){
+            //如果当前最大和为负数，则将当前最大值更新为当前值
+            tmpsum = (tmpsum < 0) ? array[i] : tmpsum + array[i];
+            //如果当前最大值大于最大值，则更新最大值
+            sum = (tmpsum > sum)? tmpsum : sum;
+        }
+
+        return sum;
+    }    
+};
