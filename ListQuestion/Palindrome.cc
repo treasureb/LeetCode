@@ -3,6 +3,7 @@
 #include<stack>
 
 //判断单链表是否为回文
+//采用栈来实现
 using namespace std;
 
 class Solution{
