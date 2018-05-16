@@ -59,4 +59,62 @@ public:
 
         return (count > (int)numbers.size()/2)? result : 0;
     }
+
+    /*
+     *  采用快排的思想
+     *  时间复杂度为O(N)
+     */
+
+    int morethan_half_quickSort(vector<int> numbers){
+        int len = numbers.size();
+        if(len < 0)
+            return 0;
+        
+        int start = 0;
+        int end = len - 1;
+        int mid = len >> 1;
+        int index = Partition(numbers,start,end);
+        while(index != mid){
+            if(index > mid){
+                end = index - 1;
+                index = Partition(numbers,start,end);
+            }else{
+                start = index + 1;
+                index = Partition(numbers,start,end);
+            }
+        }
+        int result = numbers[mid];
+        if(!check_morethan_half(numbers,length,result));
+        return 0;
+
+        return result;
+    } 
+private:
+    int Partition(vector<int> input,int low,int high){
+        int key = input[high];
+        while(low < high){
+            while(low < high && key > input[low])
+                ++low;
+            input[high] = input[low];
+            while(low < high && key < input[high])
+                --high;
+            input[low] = input[high];
+        }
+        input[low] = key;
+
+        return low;
+    }
+
+    bool check_morethan_half(vector<int> numbers,int length,int result){
+        int count = 0;
+        for(int i = 0;i < length;++i){
+            if(numbers[i] == result)
+                count++;
+        }
+        bool is_morethan_half = true;
+        if(count * 2 <= length)
+            is_morethan_half = false;
+
+        return is_morethan_half;
+    }
 };
