@@ -1,6 +1,6 @@
 #include"Tree.h"
 
-int TreeDepth(BinaryTreeNode* Root)
+int TreeDepth(Node* Root)
 {
     if(Root == nullptr){
         return 0;
@@ -13,7 +13,7 @@ int TreeDepth(BinaryTreeNode* Root)
 }
 
 //从上到下判断，节点被重复计算多次
-bool IsBlanceTreeC(BinaryTreeNode* Root)
+bool IsBlanceTreeC(Node* Root)
 {
     if(Root == nullptr)
         return true;
@@ -27,7 +27,7 @@ bool IsBlanceTreeC(BinaryTreeNode* Root)
     return IsBlanceTreeC(Root->_left) && IsBlanceTreeC(Root->_right);
 }
 
-bool _IsBlanceTree(BinaryTreeNode* Root,int* depth)
+bool _IsBlanceTree(Node* Root,int* depth)
 {
     if(Root == nullptr){
         depth = 0;
@@ -35,6 +35,7 @@ bool _IsBlanceTree(BinaryTreeNode* Root,int* depth)
     }
     
     int left,right;
+    //判断当前节点前先去分别判断它的左右子树是否为平衡树结构
     if(_IsBlanceTree(Root->_left,&left) && _IsBlanceTree(Root->_right,&right)){
         if(abs(left-right) < 2){
             *depth = left > right?(left+1):(right+1);
@@ -45,7 +46,7 @@ bool _IsBlanceTree(BinaryTreeNode* Root,int* depth)
     return false;
 }
 
-bool IsBlanceTree(BinaryTreeNode* Root)
+bool IsBlanceTree(Node* Root)
 {
     int depth = 0;
     return _IsBlanceTree(Root,&depth);
