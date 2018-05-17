@@ -1,4 +1,7 @@
 #include<iostream>
+#include<vector>
+
+using namespace std;
 
 bool FindNumbersWithSum(int data[],int length,int sum,int* num1,int* num2)
 {
@@ -26,3 +29,27 @@ bool FindNumbersWithSum(int data[],int length,int sum,int* num1,int* num2)
 
     return found;
 }
+
+class Solution{
+public:
+    vector<int> FindNumbersWithSum(vector<int> numbers,int target){
+        int len = numbers.size();
+        int start = 0;
+        int end = len - 1;
+        
+        vector<int> res;
+        while(start <= end){
+            if((numbers[start]+numbers[end]) == target){
+                res.push_back(numbers[start]);
+                res.push_back(numbers[end]);
+                return res;
+            }else if((numbers[start]+numbers[end]) < target){
+                ++start;
+            }else{
+                --end;
+            }
+        }
+
+        return res;
+    } 
+};
