@@ -1,5 +1,6 @@
 #include<iostream>
 #include<queue>
+#include<vector>
 
 #include"Tree.h"
 
@@ -45,3 +46,32 @@ void branchPrint(Node* Head)
     }
 }
 
+class Solution{
+public:
+    vector<vector<int>> Print(Node* pRoot){
+        vector<vector<int>> res;
+        if(pRoot == nullptr)
+            return res;
+
+        queue<Node*> q;
+        q.push(pRoot);
+        while(!q.empty()){
+            int i = 0;
+            int level_number = q.size();
+            vector<int> v;
+            while(i < level_number){
+                Node* f = q.front();
+                q.pop();
+                v.push_back(f->_value);
+                if(f->_left)
+                    q.push(f->_left);
+                if(f->_right)
+                    q.push(f->_right);
+
+                ++i;
+            }
+            res.push_back(v);
+        }
+        return res;
+    }
+};
