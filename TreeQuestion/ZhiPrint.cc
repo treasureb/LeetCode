@@ -1,5 +1,8 @@
 #include<iostream>
+#include<algorithm>
 #include<stack>
+#include<vector>
+#include<queue>
 
 #include"Tree.h"
 
@@ -41,3 +44,39 @@ void ZhiPrint(Node* Head)
         }
     }
 }
+
+class Solution{
+public:
+    vector<vector<int>> Print(Node* pRoot){
+        vector<vector<int>> res;
+        if(nullptr == pRoot)
+            return res;
+
+        queue<Node*> q;
+        q.push(pRoot);
+        bool even = false;
+        while(!q.empty()){
+            vector<int> v;
+            int level_number = q.size();
+            int i = 0;
+            while(i < level_number){
+                Node* f = q.front();
+                q.pop();
+                v.push_back(f->_value);
+                if(f->_left)
+                    q.push(f->_left);
+                if(f->_right)
+                    q.push(f->_right);
+
+                ++i;
+            }
+            //如果是偶数就逆置
+            if(even)
+                reverse(v.begin(),v.end());
+
+            res.push_back(v);
+            even  = !even;
+        }
+        return res;
+    }
+};
