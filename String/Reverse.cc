@@ -1,6 +1,7 @@
 #include<iostream>
-#include<string.h>
+#include<string>
 
+using namespace std;
 //整体反转
 void Reverse(char* Begin,char* End)
 {
@@ -68,3 +69,47 @@ char* LeftRotateString(char* Str,int n)
 
     return Str;
 }
+
+class Solution{
+public:
+    /*
+     *  1.采用多次逆置法
+     */
+
+    string LeftRotateString(string str,int n){
+        int len = str.size();
+        if(len <= 0)
+            //string有多种构造函数
+            return "";
+
+        //处理循环移动
+        n %= len;
+        if(n == 0)
+            return str;
+
+        reverse_str(str,0,n-1);
+        reverse_str(str,n,len-1);
+        reverse_str(str,0,len-1);
+
+        return str;
+    }
+
+    string LeftRotateString_substr(string str,int n){
+        string ret;
+        int len = str.size();
+        if(len <= 0)
+            return "";
+
+        n = n % len;
+        ret = str+str.substr(0,n);
+        ret = ret.substr(n,str.size());
+        return ret;
+    }
+
+private:
+    void reverse_str(string& str,int left,int right){
+        for(int i = left,r = right;i <= left+(right-left)/2;++i){
+            swap(str[i],str[r--]);
+        }
+    }
+};
