@@ -1,41 +1,5 @@
 #include"List.h"
 
-void DeleteDuplication(Node** Head)
-{
-    if(nullptr == Head || nullptr == *Head)
-        return;
-
-    Node* pre = Head;
-    Node* cur = Head;
-    while(cur){
-        Node* next = cur->_next;
-        bool needDelete = false;
-        if(next != nullptr && next->_data == cur->_data)
-            needDelete = true;
-
-        if(needDelete){
-            pre = cur;
-            cur = cur->_next;
-        }else{
-            int value = cur->_data;
-            Node* ToBeDel = cur;
-            while(ToBeDel != nullptr && ToBeDel->_data == value){
-                next = ToBeDel->_next;
-
-                delete ToBeDel;
-                ToBeDel = nullptr;
-
-                ToBeDel = next;
-            }
-            if(pre == nullptr)
-                *Head = next;
-            else
-                pre->_next = cur;
-
-            cur = next;
-        }
-    }
-}
 
 class Solution{
     /*
@@ -60,5 +24,44 @@ class Solution{
             pHead->_next = DeleteDuplication_R(cur);
             return pHead;
         }
+    }
+
+
+    /*
+     * 2.非递归
+     *
+     */
+
+    Node* DeleteDuplication(Node* pHead){
+        if(pHead == nullptr)
+            return nullptr;
+
+        Node* pre = nullptr;
+        Node* cur = pHead;
+        while(cur){
+            Node* next = cur->_next;
+            bool needDel = false;
+            if(next && next->_data == cur->_data)
+                needDel = true;
+
+            if(!needDel){
+                pre = cur;
+                cur = cur->_next;
+            }else{
+                int value = cur->_data;
+                Node* ToBeDel = cur;
+                while(ToBeDel && ToBeDel->_data == value){
+                    next = ToBeDel->_next;
+                    ToBeDel = next;
+                    if(pre == nullptr)
+                        pHead = next;
+                    else
+                        pre->_next = next;
+
+                    cur = next;
+                }
+            }
+        }
+        return pHead;
     }
 };
