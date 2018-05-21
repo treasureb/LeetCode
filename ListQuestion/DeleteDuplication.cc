@@ -36,3 +36,29 @@ void DeleteDuplication(Node** Head)
         }
     }
 }
+
+class Solution{
+    /*
+     * 1.采用递归思想
+     */
+
+    Node* DeleteDuplication_R(Node* pHead){
+        if(pHead == nullptr)
+            return nullptr;
+        if(pHead && pHead->_next == nullptr)
+            return pHead;
+
+        Node* cur = nullptr;
+        if(pHead->_next->_data == pHead->_data){
+            cur = pHead->_next->_next;
+            while(cur && cur->_data == pHead->_data)
+                cur = cur->_next;
+
+            return DeleteDuplication_R(cur);
+        }else{
+            cur = pHead->_next;
+            pHead->_next = DeleteDuplication_R(cur);
+            return pHead;
+        }
+    }
+};
