@@ -1,5 +1,7 @@
 #include<iostream>
+#include<vector>
 
+using namespace std;
 
 void PrintContinuousSequence(int small,int big)
 {
@@ -37,3 +39,35 @@ void FindContinuousSequence(int sum)
         curSum += big;
     }
 }
+
+/*
+ *  采用双指针的思想
+ *  1.当总和小于sum,high++
+ *  2.当总和大于sum,low++
+ *  3.当总和等于sum,然后low++,继续寻找下一组
+ *
+ */
+class Solution{
+public:
+    vector<vector<int>> FindContinuousSequence(int sum){
+        vector<vector<int>> allRes;
+        int high = 2;
+        int low = 1;
+        while(high > low){
+            int cur = (high+low)*(high-low + 1)/2;
+            if(cur < sum)
+                high++;
+            if(cur == sum){
+                vector<int> res;
+                for(int i = low;i <= high;++i)
+                    res.push_back(i);
+
+                allRes.push_back(res);
+                low++;
+            }
+            if(cur > sum)
+                low++;
+        }
+        return allRes;
+    }
+};
