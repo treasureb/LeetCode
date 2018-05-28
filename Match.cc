@@ -19,11 +19,11 @@ bool MatchCore(char* str,char* pattern)
     if(*(pattern + 1) == '*'){
         if(*pattern == *str || (*pattern == '.' && (*str) != '\0'))
             //move on the next state
-            return MatchCore(str+1,pattern+2);
+            return MatchCore(str+1,pattern+2)
             //stay on the current state
-            //matchCore(str+1,pattern)
+            ||MatchCore(str+1,pattern)
             //ignore a'*'
-            //matchCore(str,pattern+2)
+            ||MatchCore(str,pattern+2);
         else
             //ignore a'*'
             return MatchCore(str,pattern+2);
