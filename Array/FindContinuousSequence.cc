@@ -54,6 +54,7 @@ public:
         int high = 2;
         int low = 1;
         while(high > low){
+            //求和公式
             int cur = (high+low)*(high-low + 1)/2;
             if(cur < sum)
                 high++;
