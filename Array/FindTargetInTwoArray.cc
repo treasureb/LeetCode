@@ -60,7 +60,7 @@ int main()
                             {4,7,10,13},
                             {6,8,11,15}};
 
-    bool result = FindTarget(v,1);
+    bool result = FindTarget(v,11);
     cout<<result<<endl;
     return 0;
 }
