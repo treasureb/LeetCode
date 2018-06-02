@@ -1,4 +1,6 @@
 #include<iostream>
+#include<vector>
+using namespace std;
 
 int InversePairsCore(int* data,int* copy,int start,int end)
 {
@@ -22,7 +24,7 @@ int InversePairsCore(int* data,int* copy,int start,int end)
     while(i >= start && j >= start+length+1){
         //大于另一个数字的最大值，则剩下的都可以构成逆序对
         if(data[i] > data[j]){
-            copy[indexCopy] = data[i--];
+            copy[indexCopy--] = data[i--];
             count += j - start - length;
         }else{//反之直接将第二个数组中的最大值放去辅助空间
             copy[indexCopy--] = data[j--];
@@ -54,3 +56,42 @@ int ReversePairs(int *data,int length)
 
     return count;
 }
+
+class Solution{
+public:
+    int InversePairs(vector<int> data){
+        int len = data.size();
+        if(len <= 0)
+            return 0;
+
+        //开辟一个辅助空间，用作归并排序
+        vector<int> copy;
+        for(int i = 0;i < len;++i)
+            copy.push_back(data[i]);
+
+        long long count = InversePairsCore(data,copy,0,len-1);
+        copy.clear();
+        return count;
+    }
+private:
+    long long InversePairsCore(vector<int>& data,vector<int>& copy,int start,int end){
+        if(start == end){
+            copy[start] = data[start];
+            return 0;
+        }
+
+        int length = (end-start)/2;
+        long long left = InversePairsCore(copy,data,start,start+length);
+        long long right = InversePairsCore(copy,data,start+length+1,end);
+
+        int i = start + length;
+        int j = end;
+        int indexCopy = end;
+        long long count = 0;
+        while(i >= start && j >= start+length+1){
+            if(data[i] > data[j])
+        }
+
+    }
+};
+
