@@ -31,3 +31,17 @@ bool IsSymmetrical(BinaryTreeNode* Root)
     return _IsSymmetrical(Root,Root);    
 }
 
+
+class Solution{
+public:
+    bool IsSymmetrical(Node* pRoot){
+        if(pRoot == nullptr)
+            return true;
+
+        return _IsSymmetrical(pRoot->_left,pRoot->_right);
+    }
+private:
+    bool _IsSymmetrical(Node* left,Node* right){
+        
+    }
+};
