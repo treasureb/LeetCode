@@ -5,6 +5,10 @@
 using namespace std;
 class Solution{
 public:
+    /*
+     * 括号的匹配
+     *
+     */
     bool isValid(std::string s){
         size_t length = s.size();
         if(length % 2 == 1)
