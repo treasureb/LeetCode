@@ -1,5 +1,5 @@
 #include<iostream>
-using namespace std
+using namespace std;
 
 /*
  * 问题描述：给一段绳子，切成M段，要求各段乘积最大
@@ -18,7 +18,7 @@ int maxProductAfterCutting_solution1(int length)
         return 2;
 
     //用来保存子问题最优解
-    int* Products = new int[length+1];
+    int* products = new int[length+1];
     products[0] = 0;
     products[1] = 1;
     products[2] = 2;
