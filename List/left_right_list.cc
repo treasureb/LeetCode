@@ -21,14 +21,15 @@ public:
             cur = cur->_next;
         }
 
-        Node* after = head;
+        Node* mid_node = head;
         for(int i = 0;i < len/2;i++){
-            after = after->_next;
+            mid_node = mid_node->_next;
         }
 
         Node* pre = head;
-        while(pre->_next != after){
-            Node* pre_next = cur->_next;
+        Node* after = mid_node;
+        while(pre->_next != mid_node){
+            Node* pre_next = pre->_next;
             Node* after_next = after->_next;
 
             pre->_next = after;
