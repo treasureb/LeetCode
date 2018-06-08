@@ -21,17 +21,48 @@ public:
             cur = cur->_next;
         }
 
-        cur = head;
-        Node* mid_node = nullptr;
+        Node* after = head;
         for(int i = 0;i < len/2;i++){
-            cur = cur->_next;
+            after = after->_next;
         }
 
-        mid_node = cur;
+        Node* pre = head;
+        while(pre->_next != after){
+            Node* pre_next = cur->_next;
+            Node* after_next = after->_next;
 
-        cur = head;
-        for(int i = 0;i < len/2;i++){
-            
-        }
+            pre->_next = after;
+            after->_next = pre_next;
+            pre = pre_next;
+            after = after_next;
+        }            
+        pre->_next = after;
     }
 };
+
+void printf_list(Node* head){
+    if(head == nullptr)
+        return;
+
+    while(head){
+        cout<<head->_data<<"->";
+        head = head->_next;
+    }
+}
+int main(){
+    Node* node1 = new Node(1);
+    Node* node2 = new Node(2);
+    Node* node3 = new Node(3);
+    Node* node4 = new Node(4);
+
+    node1->_next = node2;
+    node2->_next = node3;
+    node3->_next = node4;
+
+    printf_list(node1);
+    Solution s;
+    s.relocate_list(node1);
+    printf_list(node1);
+    
+    return 0;
+}
