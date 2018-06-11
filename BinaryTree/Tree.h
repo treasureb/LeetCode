@@ -6,16 +6,16 @@
 #include<queue>
 using namespace std;
 
-struct Node{
-    Node(int value)
+struct TreeNode{
+    TreeNode(int value)
      :_left(nullptr)
      ,_right(nullptr)
      ,_parent(nullptr)
       ,_value(value)
     {}
-    Node* _left;
-    Node* _right;
-    Node* _parent;
+    TreeNode* _left;
+    TreeNode* _right;
+    TreeNode* _parent;
     int _value;
 };
 
