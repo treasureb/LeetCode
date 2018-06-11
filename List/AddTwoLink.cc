@@ -14,9 +14,11 @@ struct ListNode
 ListNode* AddTwoLink(ListNode* l1,ListNode* l2)
 {
     int carry = 0;
+    //构造一个头节点，这样不用对第一个节点进行特殊处理
     ListNode* res = new ListNode(0);
     ListNode* Head = res;
 
+    //两个链表同时存在
     while(l1 && l2)
     {
         res->next = new ListNode((l1->val + l2->val + carry)%10);
@@ -41,6 +43,8 @@ ListNode* AddTwoLink(ListNode* l1,ListNode* l2)
         l2 = l2->next;
         res = res->next;
     }
+
+    //如果链表的最后一个节点产生进位
     if(carry > 0)
         res->next = new ListNode(carry);
     
