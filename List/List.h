@@ -21,7 +21,7 @@ typedef struct Node
     {}
 	Node* _next;
 	TYPE _data;
-}Node;
+}ListNode;
 
 void Print(Node* Head)
 {
