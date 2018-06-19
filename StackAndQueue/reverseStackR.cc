@@ -1,6 +1,10 @@
 #include<vector>
 using namespace std;
 
+/*
+ * 题目描述:利用递归和栈操作逆序一个栈
+ */
+
 class Solution{
 public:
     vector<int> reverse_stack_R(vector<int> stack,int top){
