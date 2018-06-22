@@ -43,6 +43,9 @@ void Permutation(char* Str)
 }
 
 class Solution{
+    /*
+     * 思路:通过交换遍历第K位所有的值来求解
+     */
     void permutation(vector<string> &ans,int k,string str){
         if(k == (int)str.size() -1)
             ans.push_back(str);
