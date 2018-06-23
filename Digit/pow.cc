@@ -16,16 +16,26 @@ double myPow(double x,int n)
 
 class Solution{
 public:
+    /*
+     * 采用快速幂算法
+     * 1.直接对其二进位上的位置进行次方
+     *   11 = 1011 即2^3+2^1+2^0
+     *   11 = a^1 * a^2 * a^8
+     */
     double Pow(double base,int exponent){
+        //先直接求其绝对值,最后在判断正负
         long long p = abs((long long)exponent);
-        double r = 1.0;
+        //基数为1
+        double res = 1.0;
         while(p){
+            //如果是奇数的话,乘上上次的base
             if(p & 1)
-                r *= base;
+                res *= base;
+            //在第几位就是base的几次方
             base *= base;
             p >>= 1;
         }
-        return exponent < 0?1/r:r;
+        return exponent < 0?1/res:res;
     }
 };
 
