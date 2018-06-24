@@ -6,7 +6,7 @@
  */
 
 
-int TreeDepth(BinaryTreeNode* Root)
+int TreeDepth(TreeNode* Root)
 {
     if(Root == nullptr)
         return 0;
