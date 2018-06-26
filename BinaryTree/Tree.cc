@@ -1,11 +1,10 @@
 #include"Tree.h"
 
-BinaryTreeNode* Construct(int* startProOrder,int* endProOrder,int* startInOrder,int* endInOrder)
+TreeNode* Construct(int* startProOrder,int* endProOrder,int* startInOrder,int* endInOrder)
 {
     //构造根节点
     int rootValue = startProOrder[0];
-    BinaryTreeNode* root = new BinaryTreeNode();
-    root->_value = rootValue;
+    TreeNode* root = new TreeNode(rootValue);
     root->_left = nullptr;
     root->_right = nullptr;
 
@@ -39,7 +38,7 @@ BinaryTreeNode* Construct(int* startProOrder,int* endProOrder,int* startInOrder,
     return root;
 }
 
-BinaryTreeNode* RebuileTree(int* preOrder,int* inOrder,int length)
+TreeNode* RebuileTree(int* preOrder,int* inOrder,int length)
 {
     if(nullptr == preOrder || nullptr == inOrder || length <= 0)
         return nullptr;
@@ -48,12 +47,12 @@ BinaryTreeNode* RebuileTree(int* preOrder,int* inOrder,int length)
 }
 
 //获取中序遍历的下一个节点
-BinaryTreeNode* GetNextNode(BinaryTreeNode* Node)
+TreeNode* GetNextNode(TreeNode* Node)
 {
     if(Node == nullptr)
         return NULL;
     
-    BinaryTreeNode* Next = nullptr;
+    TreeNode* Next = nullptr;
     //如果右存在，下一个节点为右节点的最左
     if(Node->_right != nullptr){
         Node = Node->_right;
@@ -64,8 +63,8 @@ BinaryTreeNode* GetNextNode(BinaryTreeNode* Node)
         Next = Node;
         //找到一个节点是它父节点的左节点，则父节点就是下一个节点
     }else if(Node->_parent != nullptr){
-        BinaryTreeNode* cur = Node;
-        BinaryTreeNode* parent = cur->_parent;
+        TreeNode* cur = Node;
+        TreeNode* parent = cur->_parent;
         while(parent != nullptr && cur == parent->_right){
             parent = cur;
             parent = parent->_parent;

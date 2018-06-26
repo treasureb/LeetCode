@@ -4,19 +4,21 @@
 #include<iostream>
 #include<stack>
 #include<queue>
+#include<vector>
+#include<algorithm>
 using namespace std;
 
 struct TreeNode{
     TreeNode(int value)
-     :_left(nullptr)
-     ,_right(nullptr)
-     ,_parent(nullptr)
-      ,_value(value)
+     :left(nullptr)
+     ,right(nullptr)
+     ,parent(nullptr)
+      ,value(value)
     {}
-    TreeNode* _left;
-    TreeNode* _right;
-    TreeNode* _parent;
-    int _value;
+    TreeNode* left;
+    TreeNode* right;
+    TreeNode* parent;
+    int value;
 };
 
 #endif
