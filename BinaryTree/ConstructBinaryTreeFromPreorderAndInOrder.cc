@@ -7,7 +7,7 @@ using namespace std;
 class Solution
 {
 public:
-   Node* reconstruct_binarytree(vector<int> pre,vector<int> in)
+   TreeNode* reconstruct_binarytree(vector<int> pre,vector<int> in)
    {
        int in_size = in.size();
        if(in_size == 0)
@@ -15,7 +15,7 @@ public:
 
        vector<int> pre_left,pre_right,in_left,in_right;
        int root = pre[0];//前序的第一个是根节点
-       Node* node = new Node(root);
+       TreeNode* node = new TreeNode(root);
        int p = 0;
        for(;p < in_size;++p){//在中序中找到根节点
            if(in[p] == root)
@@ -32,8 +32,8 @@ public:
               }
        }
 
-       node->_left = reconstruct_binarytree(pre_left,in_left);
-       node->_left = reconstruct_binarytree(pre_right,in_right);
+       node->left = reconstruct_binarytree(pre_left,in_left);
+       node->left = reconstruct_binarytree(pre_right,in_right);
 
        return node;
    }
