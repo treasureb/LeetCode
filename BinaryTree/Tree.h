@@ -15,12 +15,12 @@ struct TreeNode{
      :left(nullptr)
      ,right(nullptr)
      ,parent(nullptr)
-      ,value(value)
+      ,val(value)
     {}
     TreeNode* left;
     TreeNode* right;
     TreeNode* parent;
-    int value;
+    int val;
 };
 
 #endif
