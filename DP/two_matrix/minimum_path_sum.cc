@@ -16,7 +16,7 @@ public:
             for(int j = 0;j < n;j++){
                 int left = (j == 0)? INT_MAX : a[i][j-1];
                 int up   = (i == 0)? INT_MAX : a[i-1][j];
-                if(i == 0 && j == 0)
+                if(i == 0 && j == 0)    //对左上角位置的数据进行特殊处理
                     continue;
                 a[i][j] += min(left,up);
             }
