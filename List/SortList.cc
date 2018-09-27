@@ -30,7 +30,7 @@ void BubbleSortList(Node* Head)
 
     Node* cur = nullptr;
     Node* next = nullptr;
-    Node* tail = nullptr;
+    Node* tail = nullptr;   //使用tail指针来指向已排好序的位置
     while(Head != tail){
         cur = Head;
         next = cur->_next;
@@ -46,7 +46,7 @@ void BubbleSortList(Node* Head)
         if(flag == 0)
             break;
 
-        tail = cur;
+        tail = cur;     //更新tail的值
     }
 }
 
@@ -84,6 +84,7 @@ Node* MergeTwoList(Node* Head1,Node* Head2)
     if(Head2 == nullptr)
         return Head1;
 
+    /* 先确定新链表的头节点 */
     Node* newHead = nullptr;
     if(Head1->_data < Head2->_data){
         newHead = Head1;
