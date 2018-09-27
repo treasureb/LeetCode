@@ -16,11 +16,11 @@ using namespace std;
 typedef struct Node
 {
     Node(TYPE data)
-     :_next(nullptr)
-      ,_data(data)
+     :next(nullptr)
+      ,val(data)
     {}
-	Node* _next;
-	TYPE _data;
+	Node* next;
+	TYPE val;
 }ListNode;
 
 void Print(Node* Head)
@@ -29,8 +29,8 @@ void Print(Node* Head)
         return;
     Node* cur = Head;
     while(cur){
-        cout<<cur->_data<<"->";
-        cur = cur->_next;
+        cout<<cur->val<<"->";
+        cur = cur->next;
     }
     cout<<endl;
 }
