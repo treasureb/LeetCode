@@ -1,74 +1,46 @@
-#include<iostream>
+#include <vector>
+using namespace std;
 
+/* 解题思路: */
+/* 1. 数组阶段有序，所以采用二分的思想 */
+/* 2. 处理特殊情况，数组只有两个数和771777等 */
 
-/*
- *   没有处理一种特殊情况
- *   10111         11101
- *
- */
+class Solution{
+    int min_number_rotate_array(vector<int> numbers){
+        int size = numbers.size();
+        if(size <= 0)
+            return 0;
 
-int RotateArrayMin(int* numbers,int length)
-{
-    if(nullptr == numbers || length <= 0)
-        return -1;
+        int start = 0,mid = 0;
+        int end = size - 1;
+        while(numbers[start] >= numbers[end]){
+            if(1 == mid - start){   //序列中只有两个数的场景
+                mid = end;
+                break;
+            }
 
-    int left = 0;
-    int right = length-1;
-    int mid = left;
-    while(numbers[left] >= numbers[right]){
-        if(right - left == 1){
-            mid = right;
-            break;
-        }
-        mid = (left + right)/2;
-        if(numbers[mid] >= numbers[left])
-            left = mid;
-        else if(numbers[mid] <= numbers[right])
-            right = mid;
-    }
+            mid = start + ((end - start) >> 1);
+            if(numbers[start] == numbers[mid] == numbers[end]){
+                //如果三个位置上的数都相等,即771777这种特殊情况,则需要顺序查找
+                return helper(numbers,start,end);
+            }
 
-    return numbers[mid];
-}
-
-/*
- *  如果当left mid right三个相同
- *  则需要顺序查找
- */
-
-
-int MinInOrder(int* numbers,int left,int right)
-{
-    int result = numbers[left];
-    for(int i = left +1;i <= right;++i){
-        if(numbers[i] < result)
-            result = numbers[i];
-    }
-    return result;
-}
-
-int RotateArrayMini(int* numbers,int length)
-{
-    if(nullptr == numbers || length <= 0)
-        return -1;
-    int left = 0;
-    int right = length-1;
-    int mid = left;
-    while(numbers[left] >= numbers[right]){
-        if(right - left == 1){
-            mid = right;
-            break;
+            if(numbers[mid] >= numbers[start])
+                start = mid;
+            if(numbers[mid] <= numbers[end])
+                end = mid;
         }
 
-        mid = (left + right)/2;
-
-        //处理特殊情况
-        if(numbers[left] == numbers[right] && numbers[mid] == numbers[left])
-            return MinInOrder(numbers,left,right);
-
-        if(numbers[mid] >= numbers[left])
-            left = mid;
-        if(numbers[mid] <= numbers[right])
-            right = mid;
-    }
         return numbers[mid];
-}
+    }
+
+    int helper(vector<int> numbers,int start,int end){
+        int res = numbers[start];
+        for(int i = start + 1;i < end;++i){
+            if(numbers[i] < res)
+                res = numbers[i];
+        }
+
+        return res;
+    }
+};
