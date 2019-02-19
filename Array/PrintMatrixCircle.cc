@@ -3,6 +3,10 @@
 
 using namespace std;
 
+/* 解题思路: */
+/* 1. 控制四个顶点 */
+/* 2. 最后从下到上注意循环次数 */
+
 class Solution
 {
 public:
