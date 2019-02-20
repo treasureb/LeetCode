@@ -18,7 +18,7 @@ public:
 
         int count = 0;
         for(int i = 0;i < (int)numbers.size();++i){
-            if(numbers[i] == middle)
+            if(numbers[i] == numbers[middle])
                 ++count;
         }
 
@@ -36,7 +36,7 @@ public:
             return 0;
 
         int result = numbers[0];
-        int count = 1;
+        int count = 0;
 
         for(int i = 0;i < (int)numbers.size();++i){
             if(count == 0){
@@ -84,8 +84,8 @@ public:
             }
         }
         int result = numbers[mid];
-        if(!check_morethan_half(numbers,length,result));
-        return 0;
+        if(!check_morethan_half(numbers,len,result))
+            return 0;
 
         return result;
     } 
