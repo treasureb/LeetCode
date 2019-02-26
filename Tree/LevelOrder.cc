@@ -53,6 +53,10 @@ public:
         return res;
     }
     
+    /* 解题思路: */
+    /*     1. 采用队列来带入左右子树，从而按序输入 */
+    /*     2. 在队列中插入nullptr来处理按行输出 */
+
     vector<vector<int>> Level_Order(TreeNode* root){
         vector<vector<int>> res;
         if(nullptr == root)
@@ -65,7 +69,7 @@ public:
         while(!q.empty()){
             TreeNode* f = q.front();
             q.pop();
-            if(nullptr == f){
+            if(nullptr == f){   //如果遇到nullptr说明一行结束了。
                 res.push_back(cur);
                 cur.resize(0);
                 if(q.size() > 0){
