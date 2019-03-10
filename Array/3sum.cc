@@ -4,6 +4,12 @@
 
 using namespace std;
 
+
+/* 解题思路: */
+/*     1. 先对非法输入之类进行剪枝 */
+/*     2. 三个正数不可能和为0,所以当某数为负数时，在剩余的区间内求其相反数 */
+/*     3. 注意去除重复的值 */
+
 class Solution{
     vector<vector<int>> three_sum(vector<int>& nums){
         vector<vector<int>> res;
@@ -26,8 +32,8 @@ class Solution{
             while(i < j){
                 if(nums[i] + nums[j] == target){
                     res.push_back({nums[k],nums[i],nums[j]});
-                    while(i < j && nums[j] == nums[i + 1]) ++i;
-                    while(i < j && nums[j] == nums[j - 1]) --j;
+                    while(i < j && nums[i] == nums[i + 1]) ++i;
+                    while(i < j && nums[j] == nums[j - 1]) --j; //避免重复值
                     ++i,--j;
                 }else if(nums[i] + nums[j] < target) ++i;
                 else --j;
