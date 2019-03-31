@@ -24,6 +24,6 @@ private:
 
         res = max(res,left+right+node->val);
 
-        return max(left,right) + node->val;
+        return max(left,right) + node->val; //左右子路径最大的加上当前节点
     }
 };

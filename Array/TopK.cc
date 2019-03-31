@@ -29,13 +29,13 @@ public:
      * O(NlogN),适合海量数据运算，因为不用一次性加载进内存
      */
 
-    vector<int> GetLeastNumbers_Head(vector<int> input,int k){
+    vector<int> GetLeastNumbers_Heap(vector<int> input,int k){
         int len = input.size();
         if(len <= 0 || k > len)
             return vector<int>();
 
         //建堆
-        vector<int> res(input.begin(),input.end()+k);
+        vector<int> res(input.begin(),input.begin()+k);
         make_heap(res.begin(),res.end());
 
         for(int i = k;i < len;++i){
@@ -105,3 +105,14 @@ private:
     }
 
 };
+
+
+int main(){
+    vector<int> v = {4,2,7,1,8,3,9,5,6};
+    Solution s;
+    vector<int> res = s.GetLeastNumbers_Heap(v,5);
+    for(int i = 0;i < (int)res.size();++i){
+        cout<<res[i]<<" "<<endl;
+    }
+    return 0;
+}

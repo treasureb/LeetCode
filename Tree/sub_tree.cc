@@ -30,6 +30,6 @@ public:
 
         return is_sub_tree(root1,root2)||
             HasSubTree(root1->left,root2) || 
-            HasSubTree(root2->right,root2);
+            HasSubTree(root1->right,root2);
     }
 };

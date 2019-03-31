@@ -29,6 +29,7 @@ void Reverse(char* Begin,char* End)
  
      //反转整个句子
      Reverse(Begin,End);
+     printf("%s\n",Data);
  
      //反转句子中的每个单词
      Begin = End = Data;
@@ -38,6 +39,7 @@ void Reverse(char* Begin,char* End)
              End++;
          }else if(*End == ' ' || *End == '\0'){
              Reverse(Begin,End-1);
+             printf("%s\n",Data);
              Begin = ++End;
          }else
              End++;

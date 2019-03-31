@@ -14,11 +14,11 @@ public:
         Node* pre = nullptr;
 
         while(cur){
-            Node* next = cur->_next;
-            if(cur->_next == nullptr)
+            Node* next = cur->next;
+            if(cur->next == nullptr)
                 new_head = cur;
 
-            cur->_next = pre;
+            cur->next = pre;
             pre = cur;
             cur = next;
         }
@@ -33,14 +33,14 @@ int main()
     Node* node2 = new Node(2);
     Node* node3 = new Node(3);
     Node* node4 = new Node(4);
-    node1->_next = node2;
-    node2->_next = node3;
-    node3->_next = node4;
+    node1->next = node2;
+    node2->next = node3;
+    node3->next = node4;
     Solution s;
     Node* result = s.reverse_list(node1);
     while(result){
         cout<<result->_data<<"->";
-        result = result->_next;
+        result = result->next;
     }
 
     return 0;

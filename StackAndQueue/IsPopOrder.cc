@@ -13,7 +13,7 @@ public:
 
         stack<int> s;
 
-        int j = 0;
+        int j = 0;  //控制出栈序列的下标
         for(size_t i = 0;i < pushV.size();++i){
             s.push(pushV[i]);
             while(!s.empty() && s.top() == popV[j]){

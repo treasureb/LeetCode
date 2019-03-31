@@ -8,14 +8,14 @@ Node* find_k_to_tail(Node* Head,unsigned int k)
     Node* Fast = Head;
     Node* Slow = Head;
     for(unsigned int i = 0;i < k -1;++i){
-        if(Fast->_next != nullptr)
-             Fast = Fast->_next;
+        if(Fast->next != nullptr)
+             Fast = Fast->next;
         else
             return nullptr;
     }
-    while(Fast->_next != nullptr){
-        Fast = Fast->_next;
-        Slow = Slow->_next;
+    while(Fast->next != nullptr){
+        Fast = Fast->next;
+        Slow = Slow->next;
     }
     return Slow;
 }
