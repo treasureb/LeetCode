@@ -20,13 +20,14 @@ class Solution{
             return res;
 
         for(size_t k = 0;k < nums.size();++k){
-            if(nums[k] > 0 )
+            if(nums[k] > 0) //如果该数为正数，则后面不能再有三个数之和为0
                 break;
 
             /* 去掉重复的结果 */
             if(k > 0 && nums[k] == nums[k-1])
                 continue;
 
+            
             int target = 0 - nums[k];
             int i = k+1,j = nums.size()-1;
             while(i < j){
