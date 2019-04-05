@@ -12,7 +12,7 @@
  */
 
 
- bool _IsSymmetrical(BinaryTreeNode* Root1,BinaryTreeNode* Root2)
+ bool _IsSymmetrical(TreeNode* Root1,TreeNode* Root2)
 {
     if(Root1 == nullptr && Root2 == nullptr)
         return true;
@@ -20,28 +20,14 @@
     if(Root1 == nullptr || Root2 == nullptr)
         return false;
 
-    if(Root1->_value != Root2->_value)
+    if(Root1->val != Root2->val)
         return false;
 
-    return _IsSymmetrical(Root1->_left,Root2->_right) && _IsSymmetrical(Root1->_right,Root2->_left);
+    return _IsSymmetrical(Root1->left,Root2->right) && _IsSymmetrical(Root1->right,Root2->left);
 }
 
-bool IsSymmetrical(BinaryTreeNode* Root)
+bool IsSymmetrical(TreeNode* Root)
 {
     return _IsSymmetrical(Root,Root);    
 }
 
-
-class Solution{
-public:
-    bool IsSymmetrical(Node* pRoot){
-        if(pRoot == nullptr)
-            return true;
-
-        return _IsSymmetrical(pRoot->_left,pRoot->_right);
-    }
-private:
-    bool _IsSymmetrical(Node* left,Node* right){
-        
-    }
-};
